@@ -50,13 +50,13 @@ __status__ = "Production"
 
 __all__ = ["LOGGER", "TEMPLATES_PATH", "TEMPLATES_EXTENSION", "listTemplatesReleases", "getCommandLineArguments", "main"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 TEMPLATES_PATH = "../templates"
 TEMPLATES_EXTENSION = "sIBLT"
 
-foundations.verbose.getLoggingConsoleHandler()
-foundations.verbose.setVerbosityLevel(3)
+foundations.verbose.get_logging_console_handler()
+foundations.verbose.set_verbosity_level(3)
 
 #**********************************************************************************************************************
 #***	Main python code.

@@ -52,7 +52,7 @@ __all__ = ["LOGGER",
 		   "getCommandLineArguments",
 		   "main"]
 
-LOGGER = foundations.verbose.installLogger()
+LOGGER = foundations.verbose.install_logger()
 
 RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__))
 
@@ -61,8 +61,8 @@ TIDY_SETTINGS_FILE = os.path.join(RESOURCES_DIRECTORY, "tidy", "tidySettings.rc"
 
 RST2HTML = "rst2html.py"
 
-foundations.verbose.getLoggingConsoleHandler()
-foundations.verbose.setVerbosityLevel(3)
+foundations.verbose.get_logging_console_handler()
+foundations.verbose.set_verbosity_level(3)
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
