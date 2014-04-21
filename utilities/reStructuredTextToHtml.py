@@ -137,7 +137,7 @@ def getCommandLineArguments():
 
 	return parser.parse_args()
 
-@foundations.decorators.systemExit
+@foundations.decorators.system_exit
 def main():
 	"""
 	Starts the Application.
@@ -147,7 +147,7 @@ def main():
 	"""
 
 	args = getCommandLineArguments()
-	args.cssFile = args.cssFile if foundations.common.pathExists(args.cssFile) else CSS_FILE
+	args.cssFile = args.cssFile if foundations.common.path_exists(args.cssFile) else CSS_FILE
 	return reStructuredTextToHtml(args.input,
 								  args.output,
 								  args.cssFile)

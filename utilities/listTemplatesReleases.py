@@ -76,7 +76,7 @@ def listTemplatesReleases():
 		LOGGER.info("{0} | '{1}': '{2}'.".format(listTemplatesReleases.__name__,
 												foundations.strings.getSplitextBasename(template),
 												foundations.parsers.getAttributeCompound("Release",
-												sections_file_parser.getValue("Release", "Template")).value))
+												sections_file_parser.get_value("Release", "Template")).value))
 
 	return True
 
@@ -101,7 +101,7 @@ def getCommandLineArguments():
 
 	return parser.parse_args()
 
-@foundations.decorators.systemExit
+@foundations.decorators.system_exit
 def main():
 	"""
 	Starts the Application.
