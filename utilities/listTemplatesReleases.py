@@ -75,7 +75,7 @@ def listTemplatesReleases():
 
 		LOGGER.info("{0} | '{1}': '{2}'.".format(listTemplatesReleases.__name__,
 												foundations.strings.getSplitextBasename(template),
-												foundations.parsers.getAttributeCompound("Release",
+												foundations.parsers.get_attribute_compound("Release",
 												sections_file_parser.get_value("Release", "Template")).value))
 
 	return True
