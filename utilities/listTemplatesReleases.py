@@ -70,13 +70,13 @@ def listTemplatesReleases():
 	"""
 
 	for template in sorted(list(foundations.walkers.filesWalker(os.path.normpath(TEMPLATES_PATH), (TEMPLATES_EXTENSION,), ("\._",)))):
-		sectionsFileParser = SectionsFileParser(template)
-		sectionsFileParser.parse(rawSections=("Script",))
+		sections_file_parser = SectionsFileParser(template)
+		sections_file_parser.parse(rawSections=("Script",))
 
 		LOGGER.info("{0} | '{1}': '{2}'.".format(listTemplatesReleases.__name__,
 												foundations.strings.getSplitextBasename(template),
 												foundations.parsers.getAttributeCompound("Release",
-												sectionsFileParser.getValue("Release", "Template")).value))
+												sections_file_parser.getValue("Release", "Template")).value))
 
 	return True
 

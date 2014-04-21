@@ -41,20 +41,20 @@ __all__ = ["recursiveRemove", "remove", "getCommandLineArguments" , "main"]
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-def recursiveRemove(rootDirectory, pattern):
+def recursiveRemove(root_directory, pattern):
 	"""
 	Recursively deletes the matching items.
 
-	:param rootDirectory: Directory to recurse.
-	:type rootDirectory: unicode
+	:param root_directory: Directory to recurse.
+	:type root_directory: unicode
 	:param pattern: Pattern to match.
 	:type pattern: unicode
 	"""
 
-	if not os.path.exists(rootDirectory):
+	if not os.path.exists(root_directory):
 		return
 
-	for root, dirs, files in os.walk(rootDirectory, followlinks=True):
+	for root, dirs, files in os.walk(root_directory, followlinks=True):
 		for item in files:
 			itemPath = os.path.join(root, item).replace("\\", "/")
 			if pattern in item:
