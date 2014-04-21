@@ -36,7 +36,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["recursiveRemove", "remove", "getCommandLineArguments" , "main"]
+__all__ = ["recursiveRemove", "remove", "get_command_line_arguments" , "main"]
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -73,7 +73,7 @@ def remove(item):
 	except:
 		print("{0} | '{1}' file removing failed!".format(remove.__name__, item))
 
-def getCommandLineArguments():
+def get_command_line_arguments():
 	"""
 	Retrieves command line arguments.
 
@@ -114,7 +114,7 @@ def main():
 	:rtype: bool
 	"""
 
-	args = getCommandLineArguments()
+	args = get_command_line_arguments()
 	return 0 if recursiveRemove(args.input, args.pattern) else 1
 
 if __name__ == "__main__":

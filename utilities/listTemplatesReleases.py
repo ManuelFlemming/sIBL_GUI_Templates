@@ -48,7 +48,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "TEMPLATES_PATH", "TEMPLATES_EXTENSION", "listTemplatesReleases", "getCommandLineArguments", "main"]
+__all__ = ["LOGGER", "TEMPLATES_PATH", "TEMPLATES_EXTENSION", "listTemplatesReleases", "get_command_line_arguments", "main"]
 
 LOGGER = foundations.verbose.install_logger()
 
@@ -80,7 +80,7 @@ def listTemplatesReleases():
 
 	return True
 
-def getCommandLineArguments():
+def get_command_line_arguments():
 	"""
 	Retrieves command line arguments.
 
