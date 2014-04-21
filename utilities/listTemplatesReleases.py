@@ -69,7 +69,7 @@ def listTemplatesReleases():
 	:rtype: bool
 	"""
 
-	for template in sorted(list(foundations.walkers.filesWalker(os.path.normpath(TEMPLATES_PATH), (TEMPLATES_EXTENSION,), ("\._",)))):
+	for template in sorted(list(foundations.walkers.files_walker(os.path.normpath(TEMPLATES_PATH), (TEMPLATES_EXTENSION,), ("\._",)))):
 		sections_file_parser = SectionsFileParser(template)
 		sections_file_parser.parse(rawSections=("Script",))
 
