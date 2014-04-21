@@ -74,7 +74,7 @@ def listTemplatesReleases():
 		sections_file_parser.parse(rawSections=("Script",))
 
 		LOGGER.info("{0} | '{1}': '{2}'.".format(listTemplatesReleases.__name__,
-												foundations.strings.getSplitextBasename(template),
+												foundations.strings.get_splitext_basename(template),
 												foundations.parsers.get_attribute_compound("Release",
 												sections_file_parser.get_value("Release", "Template")).value))
 
