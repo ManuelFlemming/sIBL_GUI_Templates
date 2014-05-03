@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**listTemplatesReleases.py**
+**list_templatesReleases.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
@@ -48,7 +48,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "TEMPLATES_PATH", "TEMPLATES_EXTENSION", "listTemplatesReleases", "get_command_line_arguments", "main"]
+__all__ = ["LOGGER", "TEMPLATES_PATH", "TEMPLATES_EXTENSION", "list_templatesReleases", "get_command_line_arguments", "main"]
 
 LOGGER = foundations.verbose.install_logger()
 
@@ -61,7 +61,7 @@ foundations.verbose.set_verbosity_level(3)
 #**********************************************************************************************************************
 #***	Main python code.
 #**********************************************************************************************************************
-def listTemplatesReleases():
+def list_templatesReleases():
 	"""
 	Lists Templates releases.
 
@@ -73,7 +73,7 @@ def listTemplatesReleases():
 		sections_file_parser = SectionsFileParser(template)
 		sections_file_parser.parse(raw_sections=("Script",))
 
-		LOGGER.info("{0} | '{1}': '{2}'.".format(listTemplatesReleases.__name__,
+		LOGGER.info("{0} | '{1}': '{2}'.".format(list_templatesReleases.__name__,
 												foundations.strings.get_splitext_basename(template),
 												foundations.parsers.get_attribute_compound("Release",
 												sections_file_parser.get_value("Release", "Template")).value))
@@ -110,7 +110,7 @@ def main():
 	:rtype: bool
 	"""
 
-	listTemplatesReleases()
+	list_templatesReleases()
 
 if __name__ == "__main__":
 	main()
