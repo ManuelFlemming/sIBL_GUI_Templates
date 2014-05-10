@@ -548,7 +548,6 @@ class Setup(object):
 				else:
 					cmds.setAttr ("%s.color" % baseMaterial, 0.25, 0.25, 0.25, type='double3')
 
-				
 			cmds.connectAttr("%s.outColor" % baseMaterial, "%s.baseMaterial" % materialWrapper)
 			
 			shadowCatcherSG = cmds.sets(renderable=True, noSurfaceShader=True, empty=True)
@@ -559,7 +558,6 @@ class Setup(object):
 			cmds.rename(baseMaterial, "%s_baseMaterial" % Constants.prefix)
 			cmds.rename(shadowCatcherSG, "%s_shadowCatcherSG" % Constants.prefix)
 			
-
 		addToDisplayLayer(ground, "%s_ground_layer" % Constants.prefix);
 
 	def setIndirectLighting(self):
