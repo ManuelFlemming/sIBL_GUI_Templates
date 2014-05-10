@@ -254,6 +254,7 @@ class Setup(object):
 		not cmds.pluginInfo("vrayformaya", q=True, loaded=True) and cmds.loadPlugin("vrayformaya")
 		cmds.setAttr("defaultRenderGlobals.currentRenderer", "vray", type="string")
 		mel.eval("vrayCreateVRaySettingsNode();")
+		cmds.setAttr("vraySettings.vfbOn", 1)
 
 	def deleteSession(self):
 		if cmds.objExists(Constants.prefix):
@@ -311,6 +312,9 @@ class Setup(object):
 		file = cmds.shadingNode("file", asTexture=True)
 		cmds.setAttr("%s.fileTextureName" % file, image, type="string")
 		cmds.connectAttr("%s.outUV" % vrayPlaceEnvTex, "%s.uvCoord" % file, f=True)
+		if slot == "vraySettings.cam_envtexBg":
+			cmds.setAttr("%s.filterType" % file, 0)
+			mel.eval("vrayAddAttr %s vrayFileGammaEnable" % file)
 
 		gammaCorrect = cmds.shadingNode("gammaCorrect", asUtility=True)
 		cmds.connectAttr("%s.outColor" % file, "%s.value" % gammaCorrect, f=True)
@@ -537,7 +541,8 @@ class Setup(object):
 
 	def setLinearWorkflow(self):
 		setAttributes({"vraySettings.cmap_gamma" : Constants.defaultGamma,
-						"vraySettings.cmap_affectBackground" : False})
+						"vraySettings.cmap_affectBackground" : False, 
+						"vraySettings.cmap_adaptationOnly" : 1})
 
 def setAttributes(attributes):
 	for attribute, value in attributes.iteritems():
