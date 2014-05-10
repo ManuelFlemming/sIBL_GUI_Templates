@@ -95,7 +95,9 @@ class Constants(object):
 						"place2dTexture",
 						"shadingEngine",
 						"VRayObjectProperties",
-						"VRayPlaceEnvTex")
+						"VRayPlaceEnvTex",
+						"VRayMtl",
+						"VRayMtlWrapper")
 	lightTypes = {"Area" : "areaLight",
 					"Directional" : "directionalLight",
 					"Point" : "pointLight",
@@ -521,17 +523,42 @@ class Setup(object):
 		cmds.parent(ground, self.controlsGroup)
 
 		if Options.shadowCatcher:
-			vrayObjectProperties = cmds.createNode("VRayObjectProperties")
-			cmds.connectAttr("%s.instObjGroups[0]" % ground, "%s.dnSetMembers[0]" % vrayObjectProperties, f=True)
-			setAttributes({"%s.giVisibility" % vrayObjectProperties : False,
-							"%s.matteSurface" % vrayObjectProperties : True,
-							"%s.matteForSecondaryRays" % vrayObjectProperties : True,
-							"%s.shadows" % vrayObjectProperties : True,
-							"%s.affectAlpha" % vrayObjectProperties : True,
-							"%s.alphaContribution" % vrayObjectProperties:-1,
-							"%s.shadowBrightness" % vrayObjectProperties : 0.5,
-							"%s.giAmount" % vrayObjectProperties : 0.5})
-			cmds.rename(vrayObjectProperties, "%s_ground_%s" % (Constants.prefix, cmds.nodeType(vrayObjectProperties)))
+		
+			materialWrapper = cmds.shadingNode('VRayMtlWrapper', asShader=True)
+			setAttributes({"%s.matteSurface" % materialWrapper : True,
+								 "%s.alphaContribution" % materialWrapper : -1,
+								 "%s.shadows" % materialWrapper : 1,
+								 "%s.affectAlpha" % materialWrapper : 1,
+								 "%s.noGIOnOtherMattes" % materialWrapper : 0,
+								 "%s.matteForSecondaryRays" % materialWrapper : 1})
+			
+			baseMaterial = cmds.shadingNode('VRayMtl', asShader=True)
+			
+			if Data.groundBounce != -1:
+				groundBounceR = float(Data.groundBounce[0]) / 255
+				groundBounceG = float(Data.groundBounce[1]) / 255
+				groundBounceB = float(Data.groundBounce[2]) / 255
+				cmds.setAttr ("%s.color" % baseMaterial, groundBounceR, groundBounceG, groundBounceB, type='double3')
+				cmds.setAttr ("%s.diffuseColorAmount" % baseMaterial, Data.groundBounceMult)
+				
+			else:
+				if Data.groundColor != -1:
+					cmds.setAttr ("%s.color" % baseMaterial, Data.groundColor[0], Data.groundColor[1], Data.groundColor[2], type='double3')
+				
+				else:
+					cmds.setAttr ("%s.color" % baseMaterial, 0.25, 0.25, 0.25, type='double3')
+
+				
+			cmds.connectAttr("%s.outColor" % baseMaterial, "%s.baseMaterial" % materialWrapper)
+			
+			shadowCatcherSG = cmds.sets(renderable=True, noSurfaceShader=True, empty=True)
+			cmds.sets(ground, edit=True, forceElement=shadowCatcherSG)
+			cmds.connectAttr("%s.outColor" % materialWrapper, "%s.surfaceShader" % shadowCatcherSG)
+			
+			cmds.rename(materialWrapper, "%s_materialWrapper" % Constants.prefix)
+			cmds.rename(baseMaterial, "%s_baseMaterial" % Constants.prefix)
+			cmds.rename(shadowCatcherSG, "%s_shadowCatcherSG" % Constants.prefix)
+			
 
 		addToDisplayLayer(ground, "%s_ground_layer" % Constants.prefix);
 
