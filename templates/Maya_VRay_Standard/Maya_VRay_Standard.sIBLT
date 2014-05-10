@@ -29,6 +29,9 @@ Sun|SUNmulti = @SUNmulti
 Header|Height = @Height
 Header|North = @North
 Lights|DynamicLights = @dynamicLights
+Ground|GROUNDcolor = @GROUNDcolor
+HDRSets_additional|GroundBounce = @GroundBounce
+HDRSets_additional|GroundBounceMult = @GroundBounceMult
 
 [Common Attributes]
 sceneSetupPrefix = @sceneSetupPrefix | sIBL | String | Scene Setup Prefix
@@ -145,6 +148,9 @@ class Data(object):
 	dynamicLights = parseDynamicLightsAttribute("@dynamicLights")
 	height = @Height
 	north = @North
+	groundColor = @GROUNDcolor
+	groundBounce = @GroundBounce
+	groundBounceMult = @GroundBounceMult
 
 class Options(object):
 	createBackground = @createBackground
