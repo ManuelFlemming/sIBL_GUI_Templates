@@ -2,8 +2,8 @@
 Name = @Name | Maya VRay Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Standard_Template_Manual.html | String | Help File
-Release = @Release | 2.0.6| String | Template Release
-Date = @Date | 5 April 2014 | String | Date
+Release = @Release | 2.0.7| String | Template Release
+Date = @Date | 10 May 2014 | String | Date
 Author = @Author | Kel Solaar / Manuel Flemming | String | Author
 Email = @Email | thomas.mansencal@gmail.com / mf@hdr-sets.com | String | Email
 Url = @Url | http://thomasmansencal.com/ | String | Url
